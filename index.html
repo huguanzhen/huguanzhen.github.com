@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>你的眼是我此生不遇的海</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+			/*display: block;
+			content: "";
+			clear:both;*/
+			position: absolute;
+			top: 50%;
+			margin-top: -180px;
+
+		}
+		body{
+			background: url("img/bg.jpg");
+			background-size: cover;
+		}
+		#imgs li{
+			float: left;
+			margin-right: 2px;
+			margin-bottom: 2px;
+		}
+		#imgs li img{
+			float: left;
+		}
+		#imgs li:nth-child(4n){
+			margin-right: 0;
+		}
+		#img-large{
+			display: none;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+		#box{
+			display: block;
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			top: 90%;
+			left: 50%;
+			margin-left: -50px;
+			background: #000;
+			opacity: .8;
+			border-radius: 5px;
+			color: #fff;
+			text-align: center;
+			text-decoration: none;
+			line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<ul id="imgs"></ul>	
+	<div id="img-large"></div>
+	<a href="love.html" id="box">看完点我呀</a>
+	<script src="zepto.min.js"></script>
+	<script src="touch.js"></script>
+	<script>
+		$(function(){
+			var $imgs = $('#imgs');
+			var num = 16;
+			var html = '';
+			var idx = 0;
+			for(var i=0; i<num;i++){//初始化小图片
+				html += '<li><img src="img/'+ (i+1)+'min' +'.jpg" alt="" class="min"></li>';
+			}
+			$imgs.append(html);
+			var iClientWidth = $(document.body).width();
+			var iX = 2;
+			$('#imgs img').css({
+				width: Math.floor((iClientWidth - 3*iX)/4),
+				height: Math.floor((iClientWidth - 3*iX)/4)
+			});
+			var $imgLarge = $('#img-large');
+			$imgs.on('tap','li',function(){
+				idx = $(this).index();
+				$imgs.hide();
+				$imgLarge.show();
+				var src = 'img/'+ (idx+1) +'.jpg';
+				changeImg('img/'+(idx + 1)+'.jpg');
+			});
+			$imgLarge.on('tap',function(){
+				$imgLarge.hide();
+				$imgs.show();
+			}).on('swipeLeft',function(){
+				idx++;
+				if(idx == num){
+					idx = 0;
+				}
+				changeImg('img/'+(idx + 1)+'.jpg');
+
+			}).on('swipeRight',function(){
+				idx--;
+				if(idx == -1){
+					idx = num - 1;
+				}
+				changeImg('img/'+(idx + 1)+'.jpg');
+			});
+			function changeImg(src){
+				$imgLarge.css({
+					background: 'url('+ src +') no-repeat center',
+					backgroundSize : 'contain'
+				});
+			}
+		});
+	</script>
+</body>
+</html>
