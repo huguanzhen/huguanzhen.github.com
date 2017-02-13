@@ -78,47 +78,52 @@
 			var html = '';
 			var idx = 0;
 			var audio = document.getElementById('audio');
-			for(var i=0; i<num;i++){//初始化小图片
+			window.onload=function(){
+				for(var i=0; i<num;i++){//初始化小图片
 				html += '<li><img src="img/'+ (i+1)+'min' +'.jpg" alt="" class="min"></li>';
-			}
-			$imgs.append(html);
-			var iClientWidth = $(document.body).width();
-			var iX = 2;
-			$('#imgs img').css({
-				width: Math.floor((iClientWidth - 2*iX)/3),
-				height: Math.floor((iClientWidth - 2*iX)/3)
-			});
-			var $imgLarge = $('#img-large');
-			$imgs.on('tap','li',function(){
-				idx = $(this).index();
-				$imgs.hide();
-				$imgLarge.show();
-				var src = 'img/'+ (idx+1) +'.jpg';
-				changeImg('img/'+(idx + 1)+'.jpg');
-			});
-			$imgLarge.on('tap',function(){
-				$imgLarge.hide();
-				$imgs.show();
-			}).on('swipeLeft',function(){
-				idx++;
-				if(idx == num){
-					idx = 0;
 				}
-				changeImg('img/'+(idx + 1)+'.jpg');
-
-			}).on('swipeRight',function(){
-				idx--;
-				if(idx == -1){
-					idx = num - 1;
-				}
-				changeImg('img/'+(idx + 1)+'.jpg');
-			});
-			function changeImg(src){
-				$imgLarge.css({
-					background: 'url('+ src +') no-repeat center',
-					backgroundSize : 'contain'
+				$imgs.append(html);
+				var iClientWidth = $(document.body).width();
+				var iX = 2;
+				$('#imgs img').css({
+					width: Math.floor((iClientWidth - 2*iX)/3),
+					height: Math.floor((iClientWidth - 2*iX)/3)
 				});
+				var $imgLarge = $('#img-large');
+				$imgs.on('tap','li',function(){
+					idx = $(this).index();
+					$imgs.hide();
+					$imgLarge.show();
+					var src = 'img/'+ (idx+1) +'.jpg';
+					changeImg('img/'+(idx + 1)+'.jpg');
+				});
+				$imgLarge.on('tap',function(){
+					$imgLarge.hide();
+					$imgs.show();
+				}).on('swipeLeft',function(){
+					idx++;
+					if(idx == num){
+						idx = 0;
+					}
+					changeImg('img/'+(idx + 1)+'.jpg');
+
+				}).on('swipeRight',function(){
+					idx--;
+					if(idx == -1){
+						idx = num - 1;
+					}
+					changeImg('img/'+(idx + 1)+'.jpg');
+				});
+				function changeImg(src){
+					$imgLarge.css({
+						background: 'url('+ src +') no-repeat center',
+						backgroundSize : 'contain'
+					});
+				}
 			}
+			
+			
+			
 			console.log(audio);
 			$('html').one('touchstart',function(){
     audio.play();
