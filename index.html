@@ -57,11 +57,16 @@
 			text-decoration: none;
 			line-height: 30px;
 		}
+		#audio{
+			position: absolute;
+			left: 50%;
+			margin-left: -150px;
+		}
 	</style>
 </head>
 <body>
 	<ul id="imgs"></ul>	
-	<audio src="1.mp3" autoplay="autoplay" loop="loop"></audio>
+	<audio src="1.mp3" autoplay="autoplay" loop="loop" controls="controls" id="audio"></audio>
 	<div id="img-large"></div>
 	<a href="love.html" id="box">看完点我呀</a>
 	<script src="zepto.min.js"></script>
