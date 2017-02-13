@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>你的眼是我此生不遇的海</title>
+	<link rel="shortcut icon" href="img/icon.ico"  type="image/x-icon">
 	<style>
 		*{
 			margin: 0;
@@ -31,7 +32,7 @@
 		#imgs li img{
 			float: left;
 		}
-		#imgs li:nth-child(4n){
+		#imgs li:nth-child(3n){
 			margin-right: 0;
 		}
 		#img-large{
@@ -60,6 +61,7 @@
 </head>
 <body>
 	<ul id="imgs"></ul>	
+	<audio src="1.mp3" autoplay="autoplay" loop="loop"></audio>
 	<div id="img-large"></div>
 	<a href="love.html" id="box">看完点我呀</a>
 	<script src="zepto.min.js"></script>
@@ -67,7 +69,7 @@
 	<script>
 		$(function(){
 			var $imgs = $('#imgs');
-			var num = 16;
+			var num = 9;
 			var html = '';
 			var idx = 0;
 			for(var i=0; i<num;i++){//初始化小图片
@@ -77,8 +79,8 @@
 			var iClientWidth = $(document.body).width();
 			var iX = 2;
 			$('#imgs img').css({
-				width: Math.floor((iClientWidth - 3*iX)/4),
-				height: Math.floor((iClientWidth - 3*iX)/4)
+				width: Math.floor((iClientWidth - 2*iX)/3),
+				height: Math.floor((iClientWidth - 2*iX)/3)
 			});
 			var $imgLarge = $('#img-large');
 			$imgs.on('tap','li',function(){
